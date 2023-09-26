@@ -35,13 +35,16 @@ use modular_bitfield_to_value::ToValue;
 A basic example:
 
 ```rust
-{
 #[bitfield(bits = 32)]
 #[derive(ToValue)]
-pub struct DrvStatus {
+pub struct Field {
     pub test: u32,
 }
 
-let value = DrvStatus.to_u32();
+
+{
+    let field = Field::from_bytes(0x100C3_u32.to_be_bytes());
+    let value = field.to_u32().unwrap();
+    assert!(0x100C3 == value, "constructed = {}, to_u32() = {}", 0x100C3, 0x100C3);
 }
 ```
