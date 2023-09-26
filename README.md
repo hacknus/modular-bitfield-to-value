@@ -1,5 +1,8 @@
 # ToValue Trait for Modular Bitfields for Rust
 
+[![crates.io](https://img.shields.io/crates/v/modular-bitfield-to-value.svg)](https://crates.io/crates/modular-bitfield-to-value)
+[![Docs](https://docs.rs/modular-bitfield-to-value/badge.svg)](https://docs.rs/modular-bitfield-to-value)
+[![Rust](https://github.com/hacknus/modular-bitfield-to-value/actions/workflows/rust.yml/badge.svg)](https://github.com/hacknus/modular-bitfield-to-value/actions/workflows/rust.yml)
 Implementation based on the [modular-bitfield](https://crates.io/crates/modular-bitfield) crate.
 Allows for the implementation of the `to_u32()` function to convert structs that implement the Specifier trait to a value.  
 TODO:
