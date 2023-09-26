@@ -1,5 +1,5 @@
 [package]
-name = "modular-bitfield-to-value"
+name = "modular-bitfield-to-value-impl"
 version = "0.1.0"
 categories = [
     "embedded",
@@ -14,6 +14,11 @@ repository = "https://github.com/hacknus/modular-bitfield-to-value "
 readme = "README.md"
 license = "Apache-2.0"
 
-[dependencies]
-modular-bitfield-to-value-impl = { path = "impl"}
+[lib]
+proc-macro = true
 
+[dependencies]
+modular-bitfield = "0.11.2"
+proc-macro2 = "1.0"
+quote = "1.0"
+syn = "2.0.37"
