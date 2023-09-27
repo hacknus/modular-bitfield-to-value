@@ -29,7 +29,7 @@ pub fn derive_to_value(input: TokenStream) -> TokenStream {
                         + ((array[2] as u32) << 0)),
                     2 => Some(((array[0] as u32) << 8)
                         + ((array[1] as u32) << 0)),
-                    1 => Some(((array[0] as u32) << 0)),
+                    1 => Some(array[0] as u32),
                     _ => None
                 }
             }
@@ -39,7 +39,7 @@ pub fn derive_to_value(input: TokenStream) -> TokenStream {
                 match array.len() {
                     2 => Some(((array[0] as u16) << 8)
                         + ((array[1] as u16) << 0)),
-                    1 => Some((array[0] as u16) << 0),
+                    1 => Some(array[0] as u16),
                     _ => None
                 }
             }
