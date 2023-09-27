@@ -6,12 +6,14 @@
 
 Implementation based on the [modular-bitfield](https://crates.io/crates/modular-bitfield) crate.
 Allows for the implementation of the `to_u32()` function to convert structs that implement the Specifier trait to a value.  
-TODO:
-- [X] `to_u32()` function to convert structs with length of 4 bytes to u32
-- [ ] `to_u32()` extend this function to convert structs with length of 3 bytes to u32
-- [ ] `to_u16()` function to convert structs with length of 2 bytes to u16
-- [ ] `to_u8()` function to convert structs with length of 1 byte to u8
-- [ ] `to_bool()` function to convert structs with length of 1 bit to bool
+
+Features:
+- [X] `to_u32()` function to convert structs with length of max 4 bytes to u32
+- [X] `to_u16()` function to convert structs with length of max 2 bytes to u16
+- [X] `to_u8()` function to convert structs with length of max 1 byte to u8
+- [X] `to_bool()` function to convert structs with length of 1 bit to bool  
+
+Todo:
 - [ ] implement little-endian conversion?
 - [ ] maybe functions to return `u64` and `u128` could be implemented...
 

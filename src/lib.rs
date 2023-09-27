@@ -24,9 +24,21 @@ pub use modular_bitfield_to_value_impl::{
     ToValue,
 };
 
-/// The ToValue trait defines the to_u32() function
+/// The ToValue trait defines the conversion functions
 pub trait ToValue {
-    /// Converts a 4 byte struct to a u32,
-    /// returns None if the struct is not of length 32 bits
+    /// Converts a struct to a u32,
+    /// returns None if the struct is longer than 32 bits
     fn to_u32(&self) -> Option<u32>;
+
+    /// Converts a struct to a u16,
+    /// returns None if the struct is longer than 16 bits
+    fn to_u16(&self) -> Option<u16>;
+
+    /// Converts a struct to a u8,
+    /// returns None if the struct is not of length 8 bits
+    fn to_u8(&self) -> Option<u8>;
+
+    /// Converts a struct to a bool,
+    /// returns None if the struct is not of length 1 bit
+    fn to_bool(&self) -> Option<bool>;
 }

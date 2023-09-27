@@ -16,17 +16,48 @@ pub fn derive_to_value(input: TokenStream) -> TokenStream {
 
     // Generate the implementation of the ToValue trait.
     let expanded = quote! {
-
         impl ToValue for #struct_name {
             fn to_u32(&self) -> Option<u32> {
                 let array = self.into_bytes();
-                if array.len() != 4 {
-                    None
-                } else {
-                    Some(((array[0] as u32) << 24)
+                match array.len() {
+                    4 => Some(((array[0] as u32) << 24)
                         + ((array[1] as u32) << 16)
                         + ((array[2] as u32) << 8)
-                        + ((array[3] as u32) << 0))
+                        + ((array[3] as u32) << 0)),
+                    3 => Some(((array[0] as u32) << 16)
+                        + ((array[1] as u32) << 8)
+                        + ((array[2] as u32) << 0)),
+                    2 => Some(((array[0] as u32) << 8)
+                        + ((array[1] as u32) << 0)),
+                    1 => Some(((array[0] as u32) << 0)),
+                    _ => None
+                }
+            }
+
+            fn to_u16(&self) -> Option<u16> {
+                let array = self.into_bytes();
+                match array.len() {
+                    2 => Some(((array[0] as u16) << 8)
+                        + ((array[1] as u16) << 0)),
+                    1 => Some((array[0] as u16) << 0),
+                    _ => None
+                }
+            }
+
+            fn to_u8(&self) -> Option<u8> {
+                let array = self.into_bytes();
+                match array.len() {
+                    1 => Some(array[0]),
+                    _ => None
+                }
+            }
+
+            fn to_bool(&self) -> Option<bool> {
+                let array = self.into_bytes();
+                if array.len() == 1 && array[0] <= 1 {
+                    Some(array[0] == 1)
+                } else {
+                    None
                 }
             }
         }
