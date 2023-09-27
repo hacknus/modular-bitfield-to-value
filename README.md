@@ -12,6 +12,8 @@ TODO:
 - [ ] `to_u16()` function to convert structs with length of 2 bytes to u16
 - [ ] `to_u8()` function to convert structs with length of 1 byte to u8
 - [ ] `to_bool()` function to convert structs with length of 1 bit to bool
+- [ ] implement little-endian conversion?
+- [ ] maybe functions to return `u64` and `u128` could be implemented...
 
 Fully supported in `#![no_std]` environments.
 
