@@ -26,6 +26,10 @@ pub use modular_bitfield_to_value_impl::{
 
 /// The ToValue trait defines the conversion functions
 pub trait ToValue {
+    /// Converts a struct to a u32 (little endian),
+    /// returns None if the struct is longer than 32 bits
+    fn to_u32_le(&self) -> Option<u32>;
+
     /// Converts a struct to a u32,
     /// returns None if the struct is longer than 32 bits
     fn to_u32(&self) -> Option<u32>;

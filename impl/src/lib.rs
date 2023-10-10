@@ -17,6 +17,24 @@ pub fn derive_to_value(input: TokenStream) -> TokenStream {
     // Generate the implementation of the ToValue trait.
     let expanded = quote! {
         impl ToValue for #struct_name {
+
+            fn to_u32_le(&self) -> Option<u32> {
+                let array = self.into_bytes();
+                match array.len() {
+                    4 => Some(((array[3] as u32) << 24)
+                        + ((array[2] as u32) << 16)
+                        + ((array[1] as u32) << 8)
+                        + ((array[0] as u32) << 0)),
+                    3 => Some(((array[2] as u32) << 16)
+                        + ((array[1] as u32) << 8)
+                        + ((array[0] as u32) << 0)),
+                    2 => Some(((array[1] as u32) << 8)
+                        + ((array[0] as u32) << 0)),
+                    1 => Some(array[0] as u32),
+                    _ => None
+                }
+            }
+
             fn to_u32(&self) -> Option<u32> {
                 let array = self.into_bytes();
                 match array.len() {
