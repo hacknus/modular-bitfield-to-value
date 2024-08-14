@@ -62,6 +62,16 @@ pub fn derive_to_value(input: TokenStream) -> TokenStream {
                 }
             }
 
+            fn to_u16_le(&self) -> Option<u16> {
+                let array = self.into_bytes();
+                match array.len() {
+                    2 => Some(((array[1] as u16) << 8)
+                        + ((array[0] as u16) << 0)),
+                    1 => Some(array[0] as u16),
+                    _ => None
+                }
+            }
+
             fn to_u8(&self) -> Option<u8> {
                 let array = self.into_bytes();
                 match array.len() {

@@ -38,6 +38,10 @@ pub trait ToValue {
     /// returns None if the struct is longer than 16 bits
     fn to_u16(&self) -> Option<u16>;
 
+    /// Converts a struct to a u16 (little endian),
+    /// returns None if the struct is longer than 16 bits
+    fn to_u16_le(&self) -> Option<u16>;
+
     /// Converts a struct to a u8,
     /// returns None if the struct is not of length 8 bits
     fn to_u8(&self) -> Option<u8>;
